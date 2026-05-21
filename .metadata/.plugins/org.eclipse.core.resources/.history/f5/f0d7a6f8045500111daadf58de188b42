@@ -1,0 +1,4 @@
+
+public interface AlunoRepository {
+	public List<Aluno> findByName(String nome);
+}

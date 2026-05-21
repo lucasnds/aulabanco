@@ -1,0 +1,9 @@
+package mongodb;
+
+public class MongoApplication {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

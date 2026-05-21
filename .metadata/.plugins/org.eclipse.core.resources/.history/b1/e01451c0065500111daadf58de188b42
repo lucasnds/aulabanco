@@ -1,0 +1,17 @@
+
+@Service
+public class AlunoService {
+	private final AlunoRepository repository;
+	
+	public AlunoService(AlunoRepository repository) {
+		this.repository = repository
+				
+		public insertAluno(Aluno aluno) {
+			return repository.save(aluno);
+		}
+		
+		public List<Aluno> insertManyAlunos (List<Aluno> alunos) {
+			return repository.saveAll(alunos);
+		}
+	}
+}

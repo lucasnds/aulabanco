@@ -1,0 +1,10 @@
+import org.springframework.data.annotation.Id;
+
+@Document(collection = "alunos")
+public class Aluno {
+
+	@Id
+	private String id;
+	
+	private String name;
+}

@@ -1,0 +1,5 @@
+
+public interface AlunoRepository {
+	public List<Aluno> findByName(String nome);
+	public List<Aluno> findByAge(Interger age);
+}

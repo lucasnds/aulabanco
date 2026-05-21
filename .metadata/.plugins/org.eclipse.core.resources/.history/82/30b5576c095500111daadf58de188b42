@@ -1,0 +1,9 @@
+package mongodb;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/alunos")
+public class AlunoController {
+
+}
