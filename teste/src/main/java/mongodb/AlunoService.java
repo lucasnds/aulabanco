@@ -27,5 +27,10 @@ public class AlunoService {
 			newAluno.setId(id);
 			return repository.save(newAluno);
 		}
+		
+		public List<Aluno> deleteAll() {
+			 repository.deleteAll();
+			return null;
+		}
 }
 	

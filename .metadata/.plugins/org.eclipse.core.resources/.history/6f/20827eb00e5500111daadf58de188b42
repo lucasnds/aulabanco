@@ -1,6 +1,0 @@
-package mongodb;
-
-@Document(colletion = apartamento)
-public class Apartamento {
-
-}

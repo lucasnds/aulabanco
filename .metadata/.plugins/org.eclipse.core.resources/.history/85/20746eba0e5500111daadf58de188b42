@@ -1,8 +1,0 @@
-package mongodb;
-
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(colletion = "apartamento")
-public class Apartamento {
-
-}

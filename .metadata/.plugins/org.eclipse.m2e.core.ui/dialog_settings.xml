@@ -19,6 +19,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="C:\Users\lucas\OneDrive\Documentos\Dev\aulabanco\teste\application.properties"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -61,11 +62,13 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="teste3"/>
 			<item value="teste"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="teste3"/>
 			<item value="teste"/>
 		</list>
 		<list key="projectNameTemplate">
