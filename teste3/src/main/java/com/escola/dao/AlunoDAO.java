@@ -16,32 +16,26 @@ import java.util.List;
 public class AlunoDAO {
     private final MongoCollection<Document> collection;
 
-    // Construtor: Conecta automaticamente na collection "aluno"
     public AlunoDAO() {
         MongoDatabase db = MongoConnection.getDatabase();
         this.collection = db.getCollection("aluno");
     }
 
-    // 1. CADASTRAR (Create)
     public void cadastrar(Aluno aluno) {
         Document doc = aluno.toDocument();
         collection.insertOne(doc);
-        // Atualiza o objeto Java com o ID gerado automaticamente pelo MongoDB
         aluno.setId(doc.getObjectId("_id").toHexString());
     }
 
-    // 2. LOCALIZAR INDIVIDUALMENTE POR ID (Read)
     public Aluno buscarPorId(String id) {
         try {
             Document doc = collection.find(Filters.eq("_id", new ObjectId(id))).first();
             return Aluno.fromDocument(doc);
         } catch (IllegalArgumentException e) {
-            // Caso o ID passado não seja um formato válido de ObjectId do Mongo
             return null;
         }
     }
 
-    // 3. ALTERAR (Update)
     public void alterar(Aluno aluno) {
         collection.updateOne(
             Filters.eq("_id", new ObjectId(aluno.getId())),
@@ -61,7 +55,6 @@ public class AlunoDAO {
         System.out.println("Total de registros removidos: " + resultado.getDeletedCount());
     }
     
-    // 5. PESQUISA POR RA (Útil para validações futuras)
     public Aluno buscarPorRA(String ra) {
         Document doc = collection.find(Filters.eq("ra", ra)).first();
         return Aluno.fromDocument(doc);
@@ -69,7 +62,6 @@ public class AlunoDAO {
     
     public List<Aluno> listarTodos() {
         List<Aluno> lista = new ArrayList<>();
-        // Acessa a collection e busca tudo
         FindIterable<Document> cursor = collection.find(); 
         
         for (Document doc : cursor) {

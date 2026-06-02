@@ -16,14 +16,12 @@ public class ProfessorDAO {
         this.collection = db.getCollection("professor");
     }
 
-    // 1. CADASTRAR
     public void cadastrar(Professor professor) {
         Document doc = professor.toDocument();
         collection.insertOne(doc);
         professor.setId(doc.getObjectId("_id").toHexString());
     }
 
-    // 2. LOCALIZAR INDIVIDUALMENTE
     public Professor buscarPorId(String id) {
         try {
             Document doc = collection.find(Filters.eq("_id", new ObjectId(id))).first();
@@ -33,7 +31,6 @@ public class ProfessorDAO {
         }
     }
 
-    // 3. ALTERAR
     public void alterar(Professor professor) {
         collection.updateOne(
             Filters.eq("_id", new ObjectId(professor.getId())),
@@ -42,12 +39,10 @@ public class ProfessorDAO {
         );
     }
 
-    // 4. EXCLUIR
     public void excluir(String id) {
         collection.deleteOne(Filters.eq("_id", new ObjectId(id)));
     }
     
-    // 5. PESQUISA POR MATRÍCULA
     public Professor buscarPorMatricula(String matricula) {
         Document doc = collection.find(Filters.eq("matricula", matricula)).first();
         return Professor.fromDocument(doc);

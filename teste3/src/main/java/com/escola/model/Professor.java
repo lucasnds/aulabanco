@@ -33,13 +33,27 @@ public class Professor {
         return prof;
     }
 
-    // Getters e Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public String getId() { 
+    	return id; 
+    }
+    
+    public void setId(String id) { 
+    	this.id = id;
+    }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public String getNome() {
+    	return nome; 
+    }
+    
+    public void setNome(String nome) { 
+    	this.nome = nome;
+    }
 
-    public String getMatricula() { return matricula; }
-    public void setMatricula(String matricula) { this.matricula = matricula; }
+    public String getMatricula() { 
+    	return matricula;
+    }
+    
+    public void setMatricula(String matricula) {
+    	this.matricula = matricula;
+    }
 }

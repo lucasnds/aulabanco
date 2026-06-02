@@ -20,17 +20,12 @@ public class ImportadorCSV implements Runnable {
         
         try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
             String linha;
-            // Pula o cabeçalho se o seu CSV tiver um
-            // br.readLine(); 
             
             while ((linha = br.readLine()) != null) {
                 String[] dados = linha.split(",");
                 
-                // Validação simples de estrutura do CSV
                 if (dados.length >= 2) {
                     Aluno aluno = new Aluno(dados[0].trim(), dados[1].trim());
-                    
-                    // Utiliza o seu método cadastrar que já está pronto [cite: 10, 15]
                     alunoDAO.cadastrar(aluno);
                 }
             }
