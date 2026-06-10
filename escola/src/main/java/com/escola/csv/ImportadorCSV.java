@@ -1,4 +1,4 @@
-package com.escola.dao;
+package com.escola.csv;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

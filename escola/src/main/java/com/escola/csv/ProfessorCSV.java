@@ -1,5 +1,6 @@
-package com.escola.dao;
+package com.escola.csv;
 
+import com.escola.dao.ProfessorDAO;
 import com.escola.model.Professor;
 
 public class ProfessorCSV
@@ -24,14 +25,6 @@ public class ProfessorCSV
 
     @Override
     public void salvar(Professor professor) {
-    	
-    	 System.out.println(
-                 "Importando professor: "
-                 + professor.getNome()
-                 + " - "
-                 + professor.getDisciplina()
-         );
-
         professorDAO.salvar(professor);
     }
 }

@@ -1,5 +1,6 @@
-package com.escola.dao;
+package com.escola.csv;
 
+import com.escola.dao.AlunoDAO;
 import com.escola.model.Aluno;
 
 public class AlunoCSV implements ImportavelCSV<Aluno> {

@@ -1,4 +1,4 @@
-package com.escola.dao;
+package com.escola.csv;
 
 public interface ImportavelCSV<T> {
 

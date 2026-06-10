@@ -1,12 +1,14 @@
+import java.util.Arrays;
+
 import org.bson.types.ObjectId;
 
 import com.escola.conexao.MongoConnection;
-import com.escola.dao.AlunoCSV;
+import com.escola.csv.AlunoCSV;
+import com.escola.csv.ImportadorCSV;
+import com.escola.csv.ProfessorCSV;
+import com.escola.csv.TurmaCSV;
 import com.escola.dao.AlunoDAO;
-import com.escola.dao.ImportadorCSV;
-import com.escola.dao.ProfessorCSV;
 import com.escola.dao.ProfessorDAO;
-import com.escola.dao.TurmaCSV;
 import com.escola.dao.TurmaDAO;
 import com.escola.model.Aluno;
 import com.escola.model.Professor;
@@ -25,7 +27,8 @@ public class Main {
         alunoDAO.excluirTodos();
         professorDAO.excluirTodos();
 
-        Thread t1 = new Thread(
+        //TESTE CSV
+       /* Thread t1 = new Thread(
                 new ImportadorCSV<Professor>(
                         "C:\\Users\\lucas\\OneDrive\\Documentos\\professores.csv",
                         new ProfessorCSV(professorDAO)
@@ -97,7 +100,59 @@ public class Main {
             }
 
             System.out.println("--------------------");
-        });
+        });*/
+        
+        
+        //EXCLUINDO ALUNO COM VINCULAÇÃO EM TURMA
+        /*
+        Professor professor =
+                new Professor("Janaína", "Matemática");
+        professorDAO.salvar(professor);
+        
+        Aluno aluno =
+                new Aluno("Lucas", "100");
+        alunoDAO.salvar(aluno);
+
+        Turma turma = new Turma();
+        turma.setNome("Turma Teste");
+        
+
+        turma.setProfessorId(
+                new ObjectId(professor.getId())
+        );
+
+        turma.setAlunosIds(
+                Arrays.asList(
+                        new ObjectId(aluno.getId())
+                )
+        );
+
+        turmaDAO.salvar(turma);
+
+        System.out.println(
+                "Turma criada com sucesso."
+        );
+
+        try {
+
+            System.out.println(
+                    "\nTentando excluir aluno..."
+            );
+
+            alunoDAO.excluir(aluno.getId());
+
+            System.out.println(
+                    "Aluno excluído!"
+            );
+
+        } catch (RuntimeException e) {
+
+            System.out.println(
+                    "ERRO: " + e.getMessage()
+            );
+        }
+*/
+        
 
         MongoConnection.close();
     }
