@@ -18,7 +18,7 @@ public class MongoConnection {
                 
                 database = mongoClient.getDatabase("escola");
                 
-                System.out.println("Conexão com o MongoDB estabelecida com sucesso!");
+                System.out.println("Iniciando!");
             } catch (Exception e) {
                 System.err.println("Erro ao conectar ao MongoDB: " + e.getMessage());
             }
@@ -29,7 +29,7 @@ public class MongoConnection {
     public static void close() {
         if (mongoClient != null) {
             mongoClient.close();
-            System.out.println("Conexão com o MongoDB fechada.");
+            System.out.println("Finalizando");
         }
     }
 }

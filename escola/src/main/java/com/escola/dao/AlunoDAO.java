@@ -6,7 +6,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.result.DeleteResult;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -21,7 +20,7 @@ public class AlunoDAO {
         this.collection = db.getCollection("aluno");
     }
 
-    public void cadastrar(Aluno aluno) {
+    public void salvar(Aluno aluno) {
         Document doc = aluno.toDocument();
         collection.insertOne(doc);
         aluno.setId(doc.getObjectId("_id").toHexString());
@@ -35,28 +34,21 @@ public class AlunoDAO {
             return null;
         }
     }
+    
+    public Aluno buscarPorNome(String nome) {
 
-    public void alterar(Aluno aluno) {
-        collection.updateOne(
-            Filters.eq("_id", new ObjectId(aluno.getId())),
-            new Document("$set", new Document("nome", aluno.getNome())
-                                    .append("ra", aluno.getRA()))
-        );
-    }
+        Document doc = collection.find(
+            Filters.eq("nome", nome)
+        ).first();
 
-    public void excluir(String id) {
-        collection.deleteOne(Filters.eq("_id", new ObjectId(id)));
+        return Aluno.fromDocument(doc);
     }
     
-    public void excluirTodos() {
-        DeleteResult resultado = collection.deleteMany(new Document());
-        
-        System.out.println("Processo de exclusão em massa concluído.");
-        System.out.println("Total de registros removidos: " + resultado.getDeletedCount());
-    }
-    
-    public Aluno buscarPorRA(String ra) {
-        Document doc = collection.find(Filters.eq("ra", ra)).first();
+    public Aluno buscarPorMatricula(String matricula) {
+        Document doc = collection.find(
+                Filters.eq("matricula", matricula)
+        ).first();
+
         return Aluno.fromDocument(doc);
     }
     
@@ -65,10 +57,39 @@ public class AlunoDAO {
         FindIterable<Document> cursor = collection.find(); 
         
         for (Document doc : cursor) {
-            Aluno a = new Aluno(doc.getString("nome"), doc.getString("ra"));
-            a.setId(doc.getObjectId("_id").toString());
+            Aluno a = new Aluno(doc.getString("nome"), doc.getString("matricula"));
+            a.setId(doc.getObjectId("_id").toHexString());
             lista.add(a);
         }
         return lista;
     }
+
+    public void atualizar(Aluno aluno) {
+        collection.updateOne(
+            Filters.eq("_id", new ObjectId(aluno.getId())),
+            new Document("$set", new Document("nome", aluno.getNome())
+                                    .append("matricula", aluno.getMatricula()))
+        );
+    }
+
+    public void excluir(String id) {
+
+        TurmaDAO turmaDAO = new TurmaDAO();
+
+        if (turmaDAO.alunoEstaEmTurma(new ObjectId(id))) {
+            throw new RuntimeException(
+                "Aluno vinculado a uma turma."
+            );
+        }
+
+        collection.deleteOne(
+            Filters.eq("_id", new ObjectId(id))
+        );
+    }
+    
+    public void excluirTodos() {
+        collection.deleteMany(new Document());
+    }
+    
+    
 }

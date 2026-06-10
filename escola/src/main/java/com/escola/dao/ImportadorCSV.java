@@ -1,37 +1,47 @@
 package com.escola.dao;
 
-import com.escola.model.Aluno;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ImportadorCSV implements Runnable {
-    private String caminhoArquivo;
-    private AlunoDAO alunoDAO;
+public class ImportadorCSV<T> implements Runnable {
 
-    public ImportadorCSV(String caminhoArquivo, AlunoDAO alunoDAO) {
+    private String caminhoArquivo;
+    private ImportavelCSV<T> adapter;
+
+    public ImportadorCSV(
+            String caminhoArquivo,
+            ImportavelCSV<T> adapter) {
+
         this.caminhoArquivo = caminhoArquivo;
-        this.alunoDAO = alunoDAO;
+        this.adapter = adapter;
     }
 
     @Override
     public void run() {
-        System.out.println("Importação iniciada pelo arquivo: " + caminhoArquivo);
-        
-        try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
+
+        try (BufferedReader br =
+                new BufferedReader(
+                    new FileReader(caminhoArquivo))) {
+
             String linha;
-            
+
             while ((linha = br.readLine()) != null) {
-                String[] dados = linha.split(",");
-                
-                if (dados.length >= 2) {
-                    Aluno aluno = new Aluno(dados[0].trim(), dados[1].trim());
-                    alunoDAO.cadastrar(aluno);
-                }
+
+                String[] dados =
+                    linha.split(",");
+
+                T objeto =
+                    adapter.criar(dados);
+
+                adapter.salvar(objeto);
             }
-            System.out.println("Processo de importação via Thread finalizado.");
+
         } catch (IOException e) {
-            System.err.println("Erro na leitura do arquivo CSV: " + e.getMessage());
+
+            System.err.println(
+                e.getMessage()
+            );
         }
     }
 }

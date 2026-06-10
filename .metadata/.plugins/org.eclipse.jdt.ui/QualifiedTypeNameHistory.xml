@@ -12,8 +12,18 @@
     <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
     <fullyQualifiedTypeName name="org.springframework.data.mongodb.core.mapping.Document"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
-    <fullyQualifiedTypeName name="com.escola.dao.ImportadorCSV"/>
-    <fullyQualifiedTypeName name="com.mongodb.client.FindIterable"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.mongodb.client.result.DeleteResult"/>
+    <fullyQualifiedTypeName name="com.mongodb.client.FindIterable"/>
+    <fullyQualifiedTypeName name="com.escola.dao.ProfessorDAO"/>
+    <fullyQualifiedTypeName name="com.escola.dao.ImportadorCSV"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.escola.model.Professor"/>
+    <fullyQualifiedTypeName name="org.bson.types.ObjectId"/>
+    <fullyQualifiedTypeName name="com.escola.dao.AlunoDAO"/>
+    <fullyQualifiedTypeName name="com.escola.dao.TurmaDAO"/>
+    <fullyQualifiedTypeName name="com.escola.model.Aluno"/>
+    <fullyQualifiedTypeName name="com.escola.dao.AlunoCSV"/>
+    <fullyQualifiedTypeName name="com.escola.model.Turma"/>
+    <fullyQualifiedTypeName name="com.escola.dao.TurmaCSV"/>
 </qualifiedTypeNameHistroy>

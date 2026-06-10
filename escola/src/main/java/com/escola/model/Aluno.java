@@ -6,21 +6,25 @@ import org.bson.types.ObjectId;
 public class Aluno {
     private String id;
     private String nome;
-    private String ra; 
+    private String matricula; 
 
     public Aluno() {}
 
-    public Aluno(String nome, String ra) {
+    public Aluno(String nome, String matricula) {
         this.nome = nome;
-        this.ra = ra;
+        this.matricula = matricula;
     }
 
     public Document toDocument() {
-        Document doc = new Document("nome", this.nome)
-                            .append("ra", this.ra);
+    	
+        Document doc = new Document()
+                .append("nome", this.nome)
+                .append("matricula", this.matricula);
+        
         if (this.id != null) {
             doc.append("_id", new ObjectId(this.id));
         }
+        
         return doc;
     }
 
@@ -29,7 +33,7 @@ public class Aluno {
         Aluno aluno = new Aluno();
         aluno.setId(doc.getObjectId("_id").toHexString());
         aluno.setNome(doc.getString("nome"));
-        aluno.setRA(doc.getString("ra"));
+        aluno.setMatricula(doc.getString("matricula"));
         return aluno;
     }
 
@@ -49,12 +53,12 @@ public class Aluno {
     	this.nome = nome; 
     }
 
-    public String getRA() {
-    	return ra; 
+    public String getMatricula() {
+    	return matricula; 
     }
     
-    public void setRA(String ra) { 
-    	this.ra = ra; 
+    public void setMatricula(String ra) { 
+    	this.matricula = ra; 
     }
     
 }

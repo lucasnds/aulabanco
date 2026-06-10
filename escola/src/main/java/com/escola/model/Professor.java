@@ -6,18 +6,18 @@ import org.bson.types.ObjectId;
 public class Professor {
     private String id;
     private String nome;
-    private String matricula;
+    private String disciplina;
 
     public Professor() {}
 
-    public Professor(String nome, String matricula) {
+    public Professor(String nome, String disciplina) {
         this.nome = nome;
-        this.matricula = matricula;
+        this.disciplina = disciplina;
     }
 
     public Document toDocument() {
         Document doc = new Document("nome", this.nome)
-                            .append("matricula", this.matricula);
+                            .append("disciplina", this.disciplina);
         if (this.id != null) {
             doc.append("_id", new ObjectId(this.id));
         }
@@ -29,7 +29,7 @@ public class Professor {
         Professor prof = new Professor();
         prof.setId(doc.getObjectId("_id").toHexString());
         prof.setNome(doc.getString("nome"));
-        prof.setMatricula(doc.getString("matricula"));
+        prof.setDisciplina(doc.getString("disciplina"));
         return prof;
     }
 
@@ -49,11 +49,11 @@ public class Professor {
     	this.nome = nome;
     }
 
-    public String getMatricula() { 
-    	return matricula;
+    public String getDisciplina() { 
+    	return disciplina;
     }
     
-    public void setMatricula(String matricula) {
-    	this.matricula = matricula;
+    public void setDisciplina(String disciplina) {
+    	this.disciplina = disciplina;
     }
 }

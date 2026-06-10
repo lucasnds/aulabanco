@@ -1,8 +1,8 @@
 INDEX VERSION 1.134+C:\Users\lucas\OneDrive\Documentos\Dev\aulabanco\.metadata\.plugins\org.eclipse.jdt.core
-112720350.index
 4165838462.index
-3283136200.index
-116431026.index
-3413270776.index
-1865797976.index
 2702381902.index
+116431026.index
+1865797976.index
+112720350.index
+3283136200.index
+3413270776.index
